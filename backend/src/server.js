@@ -17,9 +17,10 @@ app.use(express.json({ limit: "5mb" })); // req.body
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 app.use(cookieParser());
 
-app.get("/" ,(req,res)=>{
-  res.redirect("/api/auth");
-})
+app.get("/", (req, res) => {
+  res.redirect(ENV.CLIENT_URL);
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
