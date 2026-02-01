@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:3000/api"
-    : "https://pingbackend-s4co.onrender.com";
+    : "https://pingbackend-s4co.onrender.com/api";
 
 export const axiosInstance = axios.create({
   baseURL: API_URL,
