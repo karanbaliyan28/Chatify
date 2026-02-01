@@ -104,9 +104,9 @@ export const login = async (req, res) => {
 };
 
 export const logout = (_, res) => {
-  res.cookie("token", "", {
+  res.cookie("jwt", "", {
     httpOnly: true,
-    secure: true,
+    secure: ENV.NODE_ENV === "development" ? false : true,
     sameSite: "none",
     maxAge: 0,
   });
