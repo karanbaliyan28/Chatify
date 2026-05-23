@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 import { useAuthStore } from "./useAuthStore";
+import { getErrorMessage } from "../lib/errors";
 
 export const useChatStore = create((set, get) => ({
   allContacts: [],
@@ -27,7 +28,7 @@ export const useChatStore = create((set, get) => ({
       const res = await axiosInstance.get("/messages/contacts");
       set({ allContacts: res.data });
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(getErrorMessage(error, "Unable to load contacts"));
     } finally {
       set({ isUsersLoading: false });
     }
@@ -38,7 +39,7 @@ export const useChatStore = create((set, get) => ({
       const res = await axiosInstance.get("/messages/chats");
       set({ chats: res.data });
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(getErrorMessage(error, "Unable to load chats"));
     } finally {
       set({ isUsersLoading: false });
     }
@@ -50,7 +51,7 @@ export const useChatStore = create((set, get) => ({
       const res = await axiosInstance.get(`/messages/${userId}`);
       set({ messages: res.data });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Something went wrong");
+      toast.error(getErrorMessage(error, "Unable to load messages"));
     } finally {
       set({ isMessagesLoading: false });
     }
@@ -80,7 +81,7 @@ export const useChatStore = create((set, get) => ({
     } catch (error) {
       // remove optimistic message on failure
       set({ messages: messages });
-      toast.error(error.response?.data?.message || "Something went wrong");
+      toast.error(getErrorMessage(error, "Unable to send message"));
     }
   },
 
