@@ -26,6 +26,7 @@ PORT=3000
 MONGO_URI=your_mongo_uri_here
 
 NODE_ENV=development
+# Use NODE_ENV=production for deployed backends.
 
 JWT_SECRET=your_jwt_secret
 
@@ -36,6 +37,9 @@ CLIENT_URL=http://localhost:5173
 # For deployed apps, include every frontend origin that should call the API.
 # Example:
 # CLIENT_URLS=https://chatify-psi-one.vercel.app,http://localhost:5173
+# Optional cookie overrides for deployed cross-site auth:
+# COOKIE_SAME_SITE=none
+# COOKIE_SECURE=true
 
 CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 CLOUDINARY_API_KEY=your_cloudinary_api_key

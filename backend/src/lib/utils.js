@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { ENV } from "./env.js";
+import { getAuthCookieOptions } from "./cookies.js";
 
 export const generateToken = (userId, res) => {
   const { JWT_SECRET } = ENV;
@@ -11,12 +12,7 @@ export const generateToken = (userId, res) => {
     expiresIn: "7d",
   });
 
-  res.cookie("jwt", token, {
-    maxAge: 7 * 24 * 60 * 60 * 1000, // MS
-    httpOnly: true, // prevent XSS attacks: cross-site scripting
-    sameSite: ENV.NODE_ENV === "development" ? "lax" : "none",
-    secure: ENV.NODE_ENV !== "development",
-  });
+  res.cookie("jwt", token, getAuthCookieOptions(7 * 24 * 60 * 60 * 1000));
 
   return token;
 };
