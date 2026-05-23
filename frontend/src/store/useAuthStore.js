@@ -4,9 +4,9 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
 const BASE_URL =
-  import.meta.env.MODE === "development"
+  import.meta.env.MODE === "production"
     ? "http://localhost:3000"
-    : "https://pingbackend-s4co.onrender.com";
+    : "https://chatify-p18p.onrender.com";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
