@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const DEFAULT_API_URL =
-  import.meta.env.MODE === "development"
+  import.meta.env.MODE === "production"
     ? "http://localhost:3000/api"
-    : "https://chatify-p18p.onrender.com/api/";
+    : "https://chatify-p18p.onrender.com/api";
 
 export const API_URL = (import.meta.env.VITE_API_URL || DEFAULT_API_URL).replace(/\/$/, "");
 
